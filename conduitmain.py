@@ -1,10 +1,13 @@
 import sys
 import db_session
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from cond_main_win import Ui_MainWindow
 
 
-class ConduitMain():
-    pass
+class ConduitMain(QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
 
 
 
