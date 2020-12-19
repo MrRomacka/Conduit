@@ -36,14 +36,42 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
         self.status = 'Tasks'
         self.code = 'Nothing'
         self.loadtable()
-        self.tableWidget.horizontalHeader().sectionClicked.connect(self.reload)
+        self.tableWidget.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.db_connection = sqlite3.connect('marks.db')
         self.cur = self.db_connection.cursor()
+        self.tableWidget.itemChanged.connect(self.save_table)
         self.actionShow_Task.triggered.connect(self.reloadtask)
         #self.actionShow_Theory.triggered.connect(self.reloadtheory)
 
+    def save_table(self, item):
+        if self.savestatus:
+            col = item.column()
+            row = item.row()
+            elem = float(self.tableWidget.item(row, col).text())
+            if col < 5:
+                print(row, col)
+            elif self.status == 'Tasks':
+                try:
+                    print('Imtryina')
+                    self.cur.execute(f'DELETE FROM StudentTask '
+                                     f'WHERE st_stu_id = {row + 1} AND st_task_id = {col - 4}')
+                    print('Imtryina')
+                    self.db_connection.commit()
+                    self.cur.execute(f'INSERT INTO StudentTask (st_stu_id, st_task_id, st_mark) '
+                                     f'VALUES ({row + 1}, {col - 4}, {elem})')
+                    print('Imtryina')
+                    self.db_connection.commit()
+                except:
+                    print('Here')
+                    self.cur.execute(f'INSERT INTO StudentTask (st_stu_id, st_task_id, st_mark) '
+                                     f'VALUES ({row + 1}, {col - 4}, {elem})')
+            self.db_connection.commit()
+        else:
+            pass
+
     def reloadtask(self):
         self.status = 'Tasks'
+        self.savestatus = False
         self.tableWidget.clear()
         db_connection = sqlite3.connect('marks.db')
         cur = db_connection.cursor()
@@ -69,8 +97,9 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
                     elem = ''
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(elem)))
         self.tableWidget.resizeColumnsToContents()
+        self.savestatus = True
 
-    def reload(self, item):
+    def header_clicked(self, item):
         if item == 4:
             self.code = 'Legacy'
             self.loadtable()
@@ -94,6 +123,7 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
 
     def loadtable(self):
         self.tableWidget.clear()
+        self.savestatus = False
         if self.status == 'Tasks' and self.code == 'Nothing':
             db_connection = sqlite3.connect('marks.db')
             cur = db_connection.cursor()
@@ -174,6 +204,7 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
                         elem = ''
                     self.tableWidget.setItem(i, j, QTableWidgetItem(str(elem)))
             self.tableWidget.resizeColumnsToContents()
+        self.savestatus = True
 
 
 
