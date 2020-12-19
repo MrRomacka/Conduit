@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Conduit</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableWidget" name="tableWidget"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuLucky_Tasky_Ducky">
+    <property name="title">
+     <string>Lucky Tasky Ducky</string>
+    </property>
+    <addaction name="actionNew_Task"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Task"/>
+   </widget>
+   <widget class="QMenu" name="menuGame_of_Theories">
+    <property name="title">
+     <string>Game of Theories</string>
+    </property>
+    <addaction name="actionNew_Theory"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Theory"/>
+   </widget>
+   <widget class="QMenu" name="menuHearthstone">
+    <property name="title">
+     <string>Hearthstone</string>
+    </property>
+    <addaction name="actionRng_Task"/>
+    <addaction name="actionRng_Theory"/>
+   </widget>
+   <addaction name="menuLucky_Tasky_Ducky"/>
+   <addaction name="menuGame_of_Theories"/>
+   <addaction name="menuHearthstone"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Task">
+   <property name="text">
+    <string>New Task</string>
+   </property>
+  </action>
+  <action name="actionShow_Task">
+   <property name="text">
+    <string>Show Task</string>
+   </property>
+  </action>
+  <action name="actionNew_Theory">
+   <property name="text">
+    <string>New Theory</string>
+   </property>
+  </action>
+  <action name="actionShow_Theory">
+   <property name="text">
+    <string>Show Theory</string>
+   </property>
+  </action>
+  <action name="actionRng_Task">
+   <property name="text">
+    <string>Rng Task</string>
+   </property>
+  </action>
+  <action name="actionRng_Theory">
+   <property name="text">
+    <string>Rng Theory</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

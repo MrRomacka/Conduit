@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
+# Form implementation generated from reading ui file 'mainwindow+.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -28,10 +28,39 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1024, 21))
         self.menubar.setObjectName("menubar")
+        self.menuLucky_Tasky_Ducky = QtWidgets.QMenu(self.menubar)
+        self.menuLucky_Tasky_Ducky.setObjectName("menuLucky_Tasky_Ducky")
+        self.menuGame_of_Theories = QtWidgets.QMenu(self.menubar)
+        self.menuGame_of_Theories.setObjectName("menuGame_of_Theories")
+        self.menuHearthstone = QtWidgets.QMenu(self.menubar)
+        self.menuHearthstone.setObjectName("menuHearthstone")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionNew_Task = QtWidgets.QAction(MainWindow)
+        self.actionNew_Task.setObjectName("actionNew_Task")
+        self.actionShow_Task = QtWidgets.QAction(MainWindow)
+        self.actionShow_Task.setObjectName("actionShow_Task")
+        self.actionNew_Theory = QtWidgets.QAction(MainWindow)
+        self.actionNew_Theory.setObjectName("actionNew_Theory")
+        self.actionShow_Theory = QtWidgets.QAction(MainWindow)
+        self.actionShow_Theory.setObjectName("actionShow_Theory")
+        self.actionRng_Task = QtWidgets.QAction(MainWindow)
+        self.actionRng_Task.setObjectName("actionRng_Task")
+        self.actionRng_Theory = QtWidgets.QAction(MainWindow)
+        self.actionRng_Theory.setObjectName("actionRng_Theory")
+        self.menuLucky_Tasky_Ducky.addAction(self.actionNew_Task)
+        self.menuLucky_Tasky_Ducky.addSeparator()
+        self.menuLucky_Tasky_Ducky.addAction(self.actionShow_Task)
+        self.menuGame_of_Theories.addAction(self.actionNew_Theory)
+        self.menuGame_of_Theories.addSeparator()
+        self.menuGame_of_Theories.addAction(self.actionShow_Theory)
+        self.menuHearthstone.addAction(self.actionRng_Task)
+        self.menuHearthstone.addAction(self.actionRng_Theory)
+        self.menubar.addAction(self.menuLucky_Tasky_Ducky.menuAction())
+        self.menubar.addAction(self.menuGame_of_Theories.menuAction())
+        self.menubar.addAction(self.menuHearthstone.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -39,3 +68,12 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Conduit"))
+        self.menuLucky_Tasky_Ducky.setTitle(_translate("MainWindow", "Lucky Tasky Ducky"))
+        self.menuGame_of_Theories.setTitle(_translate("MainWindow", "Game of Theories"))
+        self.menuHearthstone.setTitle(_translate("MainWindow", "Hearthstone"))
+        self.actionNew_Task.setText(_translate("MainWindow", "New Task"))
+        self.actionShow_Task.setText(_translate("MainWindow", "Show Task"))
+        self.actionNew_Theory.setText(_translate("MainWindow", "New Theory"))
+        self.actionShow_Theory.setText(_translate("MainWindow", "Show Theory"))
+        self.actionRng_Task.setText(_translate("MainWindow", "Rng Task"))
+        self.actionRng_Theory.setText(_translate("MainWindow", "Rng Theory"))

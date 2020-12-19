@@ -39,6 +39,35 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
         self.tableWidget.horizontalHeader().sectionClicked.connect(self.reload)
         self.db_connection = sqlite3.connect('marks.db')
         self.cur = self.db_connection.cursor()
+        self.actionShow_Task.triggered.connect(self.reloadtask)
+        #self.actionShow_Theory.triggered.connect(self.reloadtheory)
+
+    def reloadtask(self):
+        self.tableWidget.clear()
+        db_connection = sqlite3.connect('marks.db')
+        cur = db_connection.cursor()
+        tasky_lucky = list(map(lambda x: x[0], cur.execute(f'SELECT task_id '
+                                                           f'FROM Task')))
+        title = ['stu_id', 'stu_surname', 'stu_name', 'stu_group', 'stu_legacy'] + list(
+            map(lambda x: str(x[0]), cur.execute(f'SELECT task_id '
+                                                 f'FROM Task')))
+        self.tableWidget.setColumnCount(len(title))
+        self.tableWidget.setHorizontalHeaderLabels(title)
+        stu_data = cur.execute(
+            f'SELECT stu_id, stu_surname, stu_name, stu_group, stu_legacy '
+            f'FROM Student').fetchall()
+        for i, row in enumerate(stu_data):
+            reader_two = tuple(
+                map(lambda x: cur.execute(f'SELECT st_mark '
+                                          f'FROM StudentTask '
+                                          f'WHERE st_stu_id = {i + 1} and st_task_id = {x}').fetchone(), tasky_lucky))
+            for j, elem in enumerate(row + reader_two):
+                if type(elem) == tuple:
+                    elem = list(elem)[0]
+                if elem is None:
+                    elem = ''
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(elem)))
+        self.tableWidget.resizeColumnsToContents()
 
     def reload(self, item):
         if item == 4:
