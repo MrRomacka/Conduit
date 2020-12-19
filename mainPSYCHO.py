@@ -43,6 +43,7 @@ class ConduitMain(QMainWindow, Ui_MainWindow):
         #self.actionShow_Theory.triggered.connect(self.reloadtheory)
 
     def reloadtask(self):
+        self.status = 'Tasks'
         self.tableWidget.clear()
         db_connection = sqlite3.connect('marks.db')
         cur = db_connection.cursor()
