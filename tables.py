@@ -32,12 +32,16 @@ class Theories(SqlAlchemyBase):
 
 
 class StudentsTasks(SqlAlchemyBase):
+    __tablename__ = 'StudentTask'
+    st_id = sa.Column(sa.Integer, autoincrement=True, nullable=False, primary_key=True)
     st_stu_id = sa.Column(sa.Integer, foreign_key='Student.stu_id')
     st_task_id = sa.Column(sa.Integer, foreign_key='Task.task_id')
     st_mark = sa.Column(sa.Integer)
 
 
 class StudentsTheories(SqlAlchemyBase):
+    __tablename__ = 'StudentTheory'
+    sth_id = sa.Column(sa.Integer, autoincrement=True, nullable=False, primary_key=True)
     sth_stu_id = sa.Column(sa.Integer, foreign_key='Student.stu_id')
     sth_theory_id = sa.Column(sa.Integer, foreign_key='Theory.theory_id')
     sth_quenum = sa.Column(sa.Integer)
